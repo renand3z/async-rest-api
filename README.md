@@ -1,33 +1,69 @@
+# Todo REST API Example
 
-# Rust REST API Example
+This is a sample CRUD REST API for managing Todo items, implemented in Rust using Actix web, the fastest web framework.
 
-This is a sample REST API written in Rust using Actix, the fastest web framework.
+## Features
 
-It implements two simple endpoints:
-
-- GET / - Returns "Hello World!"
-- GET /{id} - Returns the id passed in the path parameter
+- REST API with JSON responses
+- Supports all CRUD operations:
+  - GET todos
+  - POST create todo
+  - GET single todo
+  - PUT update todo
+  - DELETE todo
+- Uses Actix web async framework
+- In-memory storage of Todos (no database)
 
 ## Usage
-Get main endpoint
-```
-GET /
-```
-Response:
-```
-"Hello World!"
-```
-Get item by id
-```
-GET /12345
-```
-Response:
-```
-"Item ID: 12345"
-```
-Replace 12345 with any integer id.
 
-## This API uses:
+### Get all todos
 
-- Rust - Programming language
-- Actix Web - Rust web framework
+```
+GET /todos
+```
+
+### Create a new todo
+
+```
+POST /todos 
+{
+  "text": "My new todo item" 
+}
+```
+
+### Get a todo
+
+```
+GET /todos/1
+```
+
+### Update a todo
+
+```
+PUT /todos/1
+{
+  "completed": true
+} 
+```
+
+### Delete a todo
+
+```
+DELETE /todos/1
+```
+
+## Running Locally
+
+```
+cargo run
+```
+
+Starts server on [http://localhost:8080 ↗](http://localhost:8080)
+
+## Implementation
+
+- `main.rs` - Sets up Actix App and /todos route handler
+- `routes.rs` - CRUD handlers for each HTTP method 
+- `todo.rs` - Todo struct representing item 
+- Uses Actix web, serde JSON  
+- Async request handling with Rust futures
